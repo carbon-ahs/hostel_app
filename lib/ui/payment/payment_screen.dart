@@ -6,6 +6,7 @@ import 'package:flutter_sslcommerz/model/SSLCommerzInitialization.dart';
 import 'package:flutter_sslcommerz/model/SSLCurrencyType.dart';
 import 'package:flutter_sslcommerz/sslcommerz.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hostel_app/ui/payment/widgets/build_pay_now_card.dart';
 
 class PaymentScreen extends StatelessWidget {
   PaymentScreen({super.key});
@@ -19,19 +20,16 @@ class PaymentScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          // Random random = Random();
-          // randomNumber = random.nextInt(4001) + 1000;
-          return Card(
-            child: ListTile(
-              title: Text('PayCard $index : BDT 500'),
-              trailing: ElevatedButton(
-                onPressed: () => payNow(500),
-                style: ButtonStyle(
-                  
-                  backgroundColor: WidgetStateProperty.all(Colors.pink),
-                ),
-                child: Text('Pay Now'),
-              ),
+          return Padding(
+            padding: const EdgeInsets.only(
+              top: 4.0,
+              bottom: 4.0,
+              left: 8.0,
+              right: 8.0,
+            ),
+            child: BuildPayNowCard(
+              title: "July Academic Payment",
+              onPayTap: () => payNow(1500),
             ),
           );
         },

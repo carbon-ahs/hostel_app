@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/dto/auth_dto.dart';
 import '../../../viewmodels/auth_view_model.dart';
+import 'build_login_button.dart';
 
 Widget buildBody(
   TextEditingController userNameController,
@@ -24,7 +25,7 @@ Widget buildBody(
           ),
           child: TextFormField(
             controller: userNameController,
-            decoration: const InputDecoration(hintText: "Username"),
+            decoration: const InputDecoration(hintText: "Email"),
             textAlign: TextAlign.start,
             // maxLines: 1,
             // maxLength: 20,
@@ -40,6 +41,10 @@ Widget buildBody(
             ),
             child: TextFormField(
               controller: passwordController,
+              decoration: InputDecoration(
+                hintText: "Password",
+                // focusedBorder: InputBorder.all,
+              ),
               textAlign: TextAlign.start,
               // maxLines: 1,
               // maxLength: 20,
@@ -55,7 +60,7 @@ Widget buildBody(
                 ? const CircularProgressIndicator.adaptive()
                 : Consumer<convenient>(
                     builder: (context, authState, _) {
-                      return ElevatedButton(
+                      return BuildLoginButton(
                         // onLongPress: () => authState.toggleObscureness(),
                         onLongPress: () => Navigator.push(
                           context,
@@ -69,10 +74,7 @@ Widget buildBody(
                             password: passwordController.text,
                           ),
                         ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(fontFamily: 'inter'),
-                        ),
+                        text: 'Login',
                       );
                     },
                   );

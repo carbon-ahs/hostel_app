@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:hostel_app/data/models/auth_data_model/auth_data.dart';
 import 'package:logger/logger.dart';
 
 import '../core/services/log_service.dart';
@@ -27,13 +28,19 @@ class convenient extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     try {
-      Data? authResponse = await authRepository
-          .login({'username': authDto.email, 'password': authDto.password});
+      AuthData? authResponse = await authRepository
+          .login({'email': authDto.email, 'password': authDto.password});
 
       Log.create(
           Level.info, "Successfully Logged In: ${jsonEncode(authResponse)}");
       notifyListeners();
     } catch (error) {
+      Log.create(
+          Level.info,
+          "Error Logged In: ${authRepository.login({
+                'email': authDto.email,
+                'password': authDto.password
+              })}");
       throw Exception(error.toString());
     } finally {
       isLoading = false;

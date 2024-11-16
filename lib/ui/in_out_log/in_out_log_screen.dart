@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/ui/auth/widgets/build_app_bar.dart';
 
 import 'widgets/build_body.dart';
 
@@ -16,6 +17,7 @@ class _InOutLogScreenState extends State<InOutLogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: buildAppBar(context, "In Out Log"),
       body: buildBody(),
     );
   }
